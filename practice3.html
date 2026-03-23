@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Practice 3 – Password Verification</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+        .practice-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .practice-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(42px, 8vw, 72px);
+      line-height: 0.95;
+      color: var(--text);
+      margin-bottom: 40px;
+    }
+
+    .practice-title span { color: #3a7bd5; }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 8px 0 16px;
+    }
+
+    /* ── Inputs ── */
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    input[type="password"] {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      padding: 10px 12px;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="password"]:focus {
+      border-color: rgba(232,200,74,0.5);
+    }
+
+    /* ── Button ── */
+    .apply-btn {
+      margin-top: 8px;
+      background: var(--accent);
+      color: #0c0d14;
+      border: none;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      cursor: pointer;
+      width: 100%;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .apply-btn:hover  { opacity: 0.85; }
+    .apply-btn:active { transform: scale(0.98); }
+
+    /* ── Result message ── */
+    #result {
+      margin-top: 16px;
+      font-size: 13px;
+      min-height: 20px;
+      text-align: center;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    #result.success { color: #4caf82; }
+    #result.error   { color: var(--accent2); }
+
+    body { background: #0c0d14; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <p class="practice-eyebrow">EECS 348 · Lab 6</p>
+    <h1 class="practice-title">Password <span>Verification</span></h1>
+
+    <div class="grid">
+
+      <!-- Input card -->
+      <div class="card">
+        <p class="card-label">// Enter Password</p>
+        <div class="divider"></div>
+
+        <div class="field">
+          <label for="pw1">Password</label>
+          <input type="password" id="pw1" placeholder="Enter password"/>
+        </div>
+
+        <div class="field">
+          <label for="pw2">Confirm Password</label>
+          <input type="password" id="pw2" placeholder="Re-enter password"/>
+        </div>
+
+        <button class="apply-btn" onclick="checkPasswords()">Verify</button>
+
+        <p id="rslt"></p>
+      </div>
+
+      <!-- Info card -->
+      <div class="card">
+        <p class="card-label">// Requirements</p>
+        <div class="divider"></div>
+        <div class="about-text">
+          <p style="margin-bottom: 12px;">A valid password must:</p>
+          <ul style="padding-left: 1.2em; display: flex; flex-direction: column; gap: 8px;">
+            <li>Be <strong>at least 8 characters</strong> long</li>
+            <li>Match the confirmation field exactly</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script src="password.js"></script>
+</body>
+</html>

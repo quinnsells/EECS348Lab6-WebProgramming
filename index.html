@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EECS 348 Lab Six</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .nav-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 8vw, 64px);
+      line-height: 1;
+      letter-spacing: 0.01em;
+      margin-bottom: 8px;
+    }
+
+    .nav-title span { color: #3a7bd5; }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(80,110,200,0.10);
+      border-radius: 12px;
+      text-decoration: none;
+      color: rgba(240,240,238,0.7);
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .nav-link:hover {
+      border-color: rgba(232,200,74,0.35);
+      color: #e8c84a;
+      background: rgba(232,200,74,0.04);
+    }
+
+    .nav-link-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: #3a7bd5;
+      min-width: 28px;
+    }
+
+    .nav-link-label { flex: 1; }
+
+    .nav-link-arrow {
+      opacity: 0.3;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .nav-link:hover .nav-link-arrow {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+
+    /* ── WORKS CITED ── */
+    .citations {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .citation {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(80,110,200,0.10);
+    }
+
+    .citation:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .citation-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      color: #3a7bd5;
+      line-height: 1.4;
+    }
+
+    .citation-text {
+      font-size: 13px;
+      line-height: 1.75;
+      color: rgba(240,240,238,0.65);
+    }
+
+    .citation-text em {
+      color: #e8c84a;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HEADER -->
+    <div class="hero" style="grid-template-columns: 1fr; padding-bottom: 40px;">
+      <div class="hero-meta">
+        <span class="eyebrow">EECS 348 · Lab 6</span>
+        <h1 class="nav-title">Lab <span>Index</span></h1>
+        <p class="hero-role">Select a practice below to get started</p>
+      </div>
+    </div>
+
+    <!-- CARD GRID -->
+    <div class="grid" style="margin-top: 32px;">
+
+      <!-- PRACTICES -->
+      <div class="card card--wide">
+        <p class="card-label">Practices</p>
+        <div class="nav-links">
+
+          <a href="practice1.html" class="nav-link">
+            <span class="nav-link-number">01</span>
+            <span class="nav-link-label">Profile Page</span>
+            <svg class="nav-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+
+          <a href="practice2.html" class="nav-link">
+            <span class="nav-link-number">02</span>
+            <span class="nav-link-label">CSS Font Control</span>
+            <svg class="nav-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+
+          <a href="practice3.html" class="nav-link">
+            <span class="nav-link-number">03</span>
+            <span class="nav-link-label">Password Verification</span>
+            <svg class="nav-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+
+          <a href="practice4.html" class="nav-link">
+            <span class="nav-link-number">04</span>
+            <span class="nav-link-label">Multiplication Table</span>
+            <svg class="nav-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- WORKS CITED -->
+      <div class="card card--wide">
+        <p class="card-label">Works Cited</p>
+        <div class="citations">
+
+          <div class="citation">
+            <span class="citation-number">1</span>
+            <p class="citation-text">UI Template is sourced from Anthropic's Claude Frontend Design Skill.
+                                     All functionality as listed in the Lab 6 requirements is my own code,
+                                      but UI elements are sourced from there. (I had fun with this)</p>
+          </div>
+
+          <div class="citation">
+            <span class="citation-number">2</span>
+            <p class="citation-text">Example text in CSS Font Control was generated using AI.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

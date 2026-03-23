@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Practice 2 – CSS Font Control</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .practice-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .practice-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(42px, 8vw, 72px);
+      line-height: 0.95;
+      color: var(--text);
+      margin-bottom: 40px;
+    }
+
+    .practice-title span { color: #3a7bd5; }
+
+    .rgb-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr auto;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .rgb-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .rgb-field span {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    input[type="number"] {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      padding: 9px 10px;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="number"]:focus { border-color: rgba(232,200,74,0.5); }
+    input[type="number"]::-webkit-inner-spin-button { opacity: 0.3; }
+
+    .swatch {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+      transition: background 0.25s;
+    }
+
+    .range-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      accent-color: var(--accent);
+      cursor: pointer;
+      height: 4px;
+    }
+
+    .range-value {
+      font-size: 13px;
+      color: var(--accent);
+      min-width: 32px;
+      text-align: right;
+      font-weight: 500;
+    }
+
+    .apply-btn {
+      margin-top: 8px;
+      background: var(--accent);
+      color: #0c0d14;
+      border: none;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      cursor: pointer;
+      width: 100%;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .apply-btn:hover  { opacity: 0.85; }
+    .apply-btn:active { transform: scale(0.98); }
+
+    #demo-paragraph {
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(240,240,238,0.75);
+      border: 4px solid rgba(232,200,74,0.6);
+      border-radius: 12px;
+      padding: 24px 28px;
+      transition: color 0.4s, border-color 0.4s, border-width 0.3s;
+    }
+
+    .readout {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .readout span { color: var(--accent); }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 8px 0 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <p class="practice-eyebrow">EECS 348 · Lab 6</p>
+    <h1 class="practice-title">CSS <span>Font</span> Control</h1>
+
+    <div class="grid">
+
+      <div class="card">
+        <p class="card-label">// Controls</p>
+        <div class="divider"></div>
+
+        <div style="margin-bottom: 20px;">
+          <p class="card-label" style="margin-bottom: 10px;">Text Color — RGB</p>
+          <div class="rgb-row">
+            <div class="rgb-field">
+              <input type="number" id="text-r" min="0" max="255" value="240" oninput="updateTextSwatch()"/>
+              <span>R</span>
+            </div>
+            <div class="rgb-field">
+              <input type="number" id="text-g" min="0" max="255" value="240" oninput="updateTextSwatch()"/>
+              <span>G</span>
+            </div>
+            <div class="rgb-field">
+              <input type="number" id="text-b" min="0" max="255" value="238" oninput="updateTextSwatch()"/>
+              <span>B</span>
+            </div>
+            <div class="swatch" id="text-swatch" style="background: rgb(240,240,238)"></div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <p class="card-label" style="margin-bottom: 10px;">Border Color — RGB</p>
+          <div class="rgb-row">
+            <div class="rgb-field">
+              <input type="number" id="border-r" min="0" max="255" value="232" oninput="updateBorderSwatch()"/>
+              <span>R</span>
+            </div>
+            <div class="rgb-field">
+              <input type="number" id="border-g" min="0" max="255" value="200" oninput="updateBorderSwatch()"/>
+              <span>G</span>
+            </div>
+            <div class="rgb-field">
+              <input type="number" id="border-b" min="0" max="255" value="74" oninput="updateBorderSwatch()"/>
+              <span>B</span>
+            </div>
+            <div class="swatch" id="border-swatch" style="background: rgb(232,200,74)"></div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 24px;">
+          <p class="card-label" style="margin-bottom: 10px;">Border Width</p>
+          <div class="range-row">
+            <input type="range" id="border-width" min="1" max="20" value="4" oninput="updateWidthLabel()"/>
+            <span class="range-value" id="width-label">4px</span>
+          </div>
+        </div>
+
+        <button class="apply-btn" onclick="applyStyles()">Apply Styles</button>
+      </div>
+
+      <!-- Paragraph  -->
+      <div class="card">
+        <p class="card-label">// Output</p>
+        <div class="divider"></div>
+        <p id="demo-paragraph">
+          The quick brown fox jumps over the lazy dog. Typography is the art and technique of arranging type to make written language legible, readable, and appealing when displayed. The arrangement of type involves selecting typefaces, point sizes, line lengths, and letter-spacing — all working in harmony to convey a message with clarity and style. Good design is invisible; great design is unforgettable.
+          <!--Above Example Text was generated using AI.-->
+        </p>
+        <p class="readout" id="readout" style="margin-top: 16px;">
+          text: <span>rgb(240, 240, 238)</span> &nbsp;·&nbsp;
+          border: <span>rgb(232, 200, 74)</span> &nbsp;·&nbsp;
+          width: <span>4px</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function clamp(v) {
+      const n = parseInt(v);
+      return isNaN(n) ? 0 : Math.max(0, Math.min(255, n));
+    }
+    function updateTextSwatch() {
+      const r = clamp(document.getElementById('text-r').value);
+      const g = clamp(document.getElementById('text-g').value);
+      const b = clamp(document.getElementById('text-b').value);
+      document.getElementById('text-swatch').style.background = `rgb(${r},${g},${b})`;
+    }
+    function updateBorderSwatch() {
+      const r = clamp(document.getElementById('border-r').value);
+      const g = clamp(document.getElementById('border-g').value);
+      const b = clamp(document.getElementById('border-b').value);
+      document.getElementById('border-swatch').style.background = `rgb(${r},${g},${b})`;
+    }
+    function updateWidthLabel() {
+      const w = document.getElementById('border-width').value;
+      document.getElementById('width-label').textContent = w + 'px';
+    }
+    function applyStyles() {
+      const tr = clamp(document.getElementById('text-r').value);
+      const tg = clamp(document.getElementById('text-g').value);
+      const tb = clamp(document.getElementById('text-b').value);
+      const br = clamp(document.getElementById('border-r').value);
+      const bg = clamp(document.getElementById('border-g').value);
+      const bb = clamp(document.getElementById('border-b').value);
+      const bw = document.getElementById('border-width').value;
+      const para = document.getElementById('demo-paragraph');
+      para.style.color       = `rgb(${tr}, ${tg}, ${tb})`;
+      para.style.borderColor = `rgb(${br}, ${bg}, ${bb})`;
+      para.style.borderWidth = bw + 'px';
+      document.getElementById('readout').innerHTML =
+        `text: <span>rgb(${tr}, ${tg}, ${tb})</span> &nbsp;·&nbsp; ` +
+        `border: <span>rgb(${br}, ${bg}, ${bb})</span> &nbsp;·&nbsp; ` +
+        `width: <span>${bw}px</span>`;
+    }
+  </script>
+</body>
+</html>
